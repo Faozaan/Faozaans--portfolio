@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#070b15">
+    <meta
+        name="description"
+        content="Thank you for contacting Faozaan Adeyemo. Your message is appreciated."
+    >
+
+    <title>Thank You | Faozaan Adeyemo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* =========================
+           RESET AND VARIABLES
+        ========================= */
+
+        :root {
+            --bg: #070b15;
+            --surface: #101727;
+            --text: #f5f7ff;
+            --muted: #9ba7bd;
+            --primary: #8b5cf6;
+            --secondary: #22d3ee;
+            --border: rgba(255, 255, 255, 0.09);
+            --gradient: linear-gradient(
+                135deg,
+                #a78bfa,
+                #22d3ee
+            );
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* =========================
+           BACKGROUND EFFECTS
+        ========================= */
+
+        .background-glow {
+            position: fixed;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.17;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glow-one {
+            top: -150px;
+            left: -100px;
+            background: var(--primary);
+        }
+
+        .glow-two {
+            right: -150px;
+            bottom: -150px;
+            background: var(--secondary);
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            width: 100%;
+            padding: 24px 7%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--gradient);
+            color: #070b15;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main {
+            flex: 1;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            padding: 65px 20px;
+        }
+
+        .thank-you-card {
+            width: 100%;
+            max-width: 650px;
+            padding: 55px 45px;
+            text-align: center;
+            background: rgba(16, 23, 39, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: 0 25px 100px rgba(0, 0, 0, 0.22);
+            animation: appear 0.8s ease both;
+        }
+
+        /* Success Icon */
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            background: rgba(34, 211, 238, 0.09);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.08);
+            animation: pop 0.6s ease 0.2s both;
+        }
+
+        .success-icon svg {
+            width: 42px;
+            height: 42px;
+            stroke: var(--secondary);
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Text */
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--secondary);
+            box-shadow: 0 0 12px var(--secondary);
+        }
+
+        h1 {
+            margin-bottom: 22px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2.4rem, 7vw, 4rem);
+            line-height: 1.12;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            color: transparent;
+            background: var(--gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .description {
+            max-width: 470px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        /* =========================
+           INFORMATION BOX
+        ========================= */
+
+        .info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin: 32px 0;
+            padding: 19px;
+            text-align: left;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .info-icon {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            color: var(--secondary);
+            background: rgba(34, 211, 238, 0.09);
+            font-size: 1.1rem;
+        }
+
+        .info-box h2 {
+            margin-bottom: 7px;
+            font-size: 0.95rem;
+        }
+
+        .info-box p {
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            min-height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 22px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: #070b15;
+            background: var(--gradient);
+        }
+
+        .button-primary:hover {
+            box-shadow: 0 10px 35px rgba(139, 92, 246, 0.2);
+        }
+
+        .button-outline {
+            color: var(--text);
+            border-color: var(--border);
+            background: transparent;
+        }
+
+        .button-outline:hover {
+            border-color: var(--secondary);
+            background: rgba(34, 211, 238, 0.05);
+        }
+
+        .arrow {
+            font-size: 1.1rem;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            padding: 25px 7%;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .footer strong {
+            color: var(--text);
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: scale(0.65);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* =========================
+           TABLET AND MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 18px 5%;
+            }
+
+            .brand {
+                font-size: 0.9rem;
+            }
+
+            .brand-mark {
+                width: 38px;
+                height: 38px;
+            }
+
+            .main {
+                padding: 40px 16px;
+            }
+
+            .thank-you-card {
+                padding: 40px 22px;
+                border-radius: 22px;
+            }
+
+            .success-icon {
+                width: 76px;
+                height: 76px;
+                margin-bottom: 25px;
+            }
+
+            .success-icon svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .description {
+                font-size: 0.92rem;
+            }
+
+            .info-box {
+                padding: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .footer {
+                padding: 22px 5%;
+            }
+        }
+
+        /* Respect reduced-motion preferences */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <a class="brand" href="index.html" aria-label="Return to homepage">
+            <span class="brand-mark">FA</span>
+            <span>Faozaan Adeyemo</span>
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <section class="thank-you-card" aria-labelledby="thank-you-title">
+
+            <!-- Success Icon -->
+            <div class="success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12.5l4.5 4.5L19 7"></path>
+                </svg>
+            </div>
+
+            <p class="eyebrow">
+                <span class="status-dot"></span>
+                Message received
+            </p>
+
+            <h1 id="thank-you-title">
+                Thank You<br>
+                <span class="gradient-text">For Reaching Out!</span>
+            </h1>
+
+            <p class="description">
+                Thank you for taking the time to contact me.
+                I appreciate your interest in working together.
+                Your message means a lot, and I look forward to
+                learning more about your project.
+            </p>
+
+            <!-- Information Box -->
+            <div class="info-box">
+
+                <div class="info-icon" aria-hidden="true">
+                    &#9432;
+                </div>
+
+                <div>
+                    <h2>What's next?</h2>
+
+                    <p>
+                        If your message was successfully submitted,
+                        I'll review your enquiry and respond using
+                        the contact details you provided.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="buttons">
+
+                <a href="index.html" class="button button-primary">
+                    <span class="arrow" aria-hidden="true">&larr;</span>
+                    Back to Homepage
+                </a>
+
+                <a href="index.html#projects" class="button button-outline">
+                    Explore My Projects
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            Designed with purpose. Built with code.<br>
+            &copy; <span id="year"></span>
+            <strong>Faozaan Adeyemo.</strong> All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Display the current year.
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>

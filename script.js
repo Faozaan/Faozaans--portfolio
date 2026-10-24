@@ -1,0 +1,20 @@
+const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>[...root.querySelectorAll(s)];
+const body=document.body, menu=$('.menu-toggle'), nav=$('.nav-links'), theme=$('.theme-toggle');
+// Mobile navigation with accessible state
+menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.querySelector('span').textContent=open?'close':'menu'});
+$$('.nav-links a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.querySelector('span').textContent='menu'}));
+document.addEventListener('click',e=>{if(!nav.contains(e.target)&&!menu.contains(e.target)){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.querySelector('span').textContent='menu'}});
+// Theme toggle remembers the visitor's preference
+const savedTheme=localStorage.getItem('fa-theme');if(savedTheme==='light')body.classList.add('light');function syncThemeIcon(){theme.querySelector('span').textContent=body.classList.contains('light')?'dark_mode':'light_mode';theme.setAttribute('aria-label',body.classList.contains('light')?'Switch to dark mode':'Switch to light mode')}syncThemeIcon();theme.addEventListener('click',()=>{body.classList.toggle('light');localStorage.setItem('fa-theme',body.classList.contains('light')?'light':'dark');syncThemeIcon()});
+// Scroll reveal, skill meters and active navigation
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');revealObserver.unobserve(entry.target)}}),{threshold:.12});$$('.reveal,.skill-card').forEach(el=>revealObserver.observe(el));
+const sections=$$('main section[id]'), links=$$('.nav-links a');const sectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id))}}),{rootMargin:'-35% 0px -55% 0px'});sections.forEach(s=>sectionObserver.observe(s));
+// Progress line follows the page scroll
+const progress=$('.scroll-progress');function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%'}addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+// Subtle pointer glow and gentle 3D tilt on larger screens only
+const glow=$('.cursor-glow');if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';glow.style.opacity='.8'});addEventListener('pointerleave',()=>glow.style.opacity='0');$$('.project-card,.info-card').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(850px) rotateX(${-y*3}deg) rotateY(${x*3}deg) translateY(-4px)`});card.addEventListener('pointerleave',()=>card.style.transform='')})}
+// Button magnetic nudge on desktop
+if(matchMedia('(pointer:fine)').matches){$$('.magnetic').forEach(btn=>{btn.addEventListener('pointermove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.08}px,${(e.clientY-r.top-r.height/2)*.12}px)`});btn.addEventListener('pointerleave',()=>btn.style.transform='')})}
+$('#year').textContent=new Date().getFullYear();
+// Small entrance polish for the hero artwork
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){window.addEventListener('load',()=>{$('.hero-copy').animate([{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],{duration:800,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'});$('.hero-art').animate([{opacity:0,transform:'translateY(12px) scale(.98)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:1000,delay:120,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'})})}
